@@ -1,35 +1,70 @@
 import React, { useState } from 'react'
 
-function TransactionForm() {
-  const [formData, setFormData] = useState({
-    date: "",
-    description: "",
-    category: "",
-    amount: "",
-  })
-
-  //Function for handling the submit form
-  function handleSubmit(event) {
-    event.preventDefault()
-    // console.log(formData)
+function TransactionForm({ onAddTransaction }) {
+    const [newTransaction, setNewTransaction] = useState({
+      date: "",
+      description: "",
+      category: "",
+      amount: "",
+    });
+  
+    function handleSubmit(event) {
+      event.preventDefault();
+      onAddTransaction(newTransaction);
+      setNewTransaction({
+        date: "",
+        description: "",
+        category: "",
+        amount: "",
+      });
+    }
+  
+    function handleChange(event) {
+      const key = event.target.id;
+      const value = event.target.value;
+      setNewTransaction({ ...newTransaction, [key]: value });
+    }
+  
+    return (
+      <form onSubmit={handleSubmit} className="form-container">
+        <input
+          type="date"
+          id="date"
+          className="form-input"
+          value={newTransaction.date}
+          onChange={handleChange}
+        />
+        <input
+          type="text"
+          id="description"
+          className="form-input"
+          placeholder="Description"
+          value={newTransaction.description}
+          onChange={handleChange}
+        />
+        <input
+          type="text"
+          id="category"
+          className="form-input"
+          placeholder="Category"
+          value={newTransaction.category}
+          onChange={handleChange}
+        />
+        <input
+          type="number"
+          id="amount"
+          className="form-input"
+          placeholder="Amount"
+          value={newTransaction.amount}
+          onChange={handleChange}
+        />
+        <input
+          type="submit"
+          value="Add Transaction"
+          className="form-input"
+        />
+      </form>
+    );
   }
-  //Function for handling onChange event
-  function handleChange(event){
-    // const key = event.target.value
-    console.log(event.target)
-    setFormData({...formData, date: event.target.value})
-  }
-
-  return (
-    <form onSubmit={handleSubmit}>
-      <input type="date" id="date" value={formData.date} onChange={handleChange}/>
-      <input type="text" id="description" placeholder='Description' value={formData.description} onChange={handleChange}/>
-      <input type="text" id='category' placeholder='category' value={formData.category} onChange={handleChange}/>
-      <input type="number" id='amount' placeholder='Amount' value={formData.amount}onChange={handleChange}/>
-      <input type="submit" value="Add Transaction" />
-    </form>
-  )
-}
-
-export default TransactionForm
-
+  
+  export default TransactionForm;
