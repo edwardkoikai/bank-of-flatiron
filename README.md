@@ -32,10 +32,10 @@ run `npm start` to run the app in the development mode
 
 # Live Link
 
-You can click [Here](https://online-book-reservation-web-page.vercel.app/) to view the website
-or 
+You can click [Here](https://edwardkoikai.github.io/bank-of-flatiron/) to view the website
+or visit
 
-https://online-book-reservation-web-page.vercel.app/
+https://edwardkoikai.github.io/bank-of-flatiron/
 
 ## Technologies used
 
